@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+var subjectObject = {
+  "Kozhikode": {
+    "Kunnamangalam": ["koyilandi", "kunnamangalam", "Thamarassery", "Mukkam"],
+    "Pathimangalam": ["koyilandi", "kunnamangalam", "Thamarassery", "Mukkam"],
+    "Karanthur": ["koyilandi", "kunnamangalam", "Thamarassery", "Mukkam"],
+    "Nadakkavu": ["koyilandi", "kunnamangalam", "Thamarassery", "Mukkam"]
+
+
+  },
+  "Kannur": {
+    "Payyannur": ["Variables", "Strings", "Arrays"],
+    "Mattannur": ["Variables", "Strings", "Arrays"],
+    "Chovua": ["Variables", "Strings", "Arrays"]
+
+  },
+
+  "Erankulam": {
+    "Edapally": ["Variables", "Strings", "Arrays"],
+    "Palayam": ["Variables", "Strings", "Arrays"]
+  },
+
+  "Wayanad": {
+    "Sulthan Batherry": ["Variables", "Strings", "Arrays"],
+    "Vythiri": ["Variables", "Strings", "Arrays"]
+  },
+
+  "Malappuram": {
+    "Malappuram1": ["Variables", "Strings", "Arrays"],
+    "Malappuram2": ["Variables", "Strings", "Arrays"],
+    "Malappuram3": ["Variables", "Strings", "Arrays"]
+
+  }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+}
+</script>
+</head>
+<body>
+<style>
+    .form{
+    align-items:center;
+    }
+<!--    li{-->
+<!--    list-style:none;-->
+<!--    }-->
+tr td{
+    padding:10px;
+    margin:40px;
+    }
+    .colr{
+    border:2px solid white;
+    border-radius:10px;
+<!--    background:#f8f8fa;-->
+        }
+<!--    table, th, td {-->
+<!--  border: 1px solid black;-->
+<!--  border-collapse: collapse;-->
+<!--}-->
+  th, td {
+  border-bottom: 1px solid #ddd;
+}
+input{
+}
+</style>
+<div class="container form">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-5 colr">
+
+<form action = "" method = "post">
+    <br>
+            <h1 style="text-decoration:underline;">REGISTRATION FORM</h1>
+            <br>
+	{% csrf_token %}
+    <table>
+        <tr>
+            <td>Name :</td>
+            <td><input name="name" type="text" placeholder="Name" required></td>
+        </tr>
+        <tr>
+            <td>Age :</td>
+            <td><input name="age" type="date" placeholder="dob" required></td>
+        </tr>
+        <tr>
+            <td>Gender :</td>
+            <td><input type="radio" id="html" name="gender" value="Male" required>
+            <label for="html">Male</label>
+            <input type="radio" id="css" name="gender" value="Female">
+            <label for="css">Female</label>
+            <input type="radio" id="javascript" name="gender" value="Other">
+            <label for="javascript">Other</label></td>
+        </tr>
+        <tr>
+            <td>Phone :</td>
+            <td><input type="text"name="phone" placeholder="Phone"></td>
+        </tr>
+        <tr>
+            <td>E-mail :</td>
+            <td><input name="email" type="email" placeholder="email"></td>
+        </tr>
+        <tr>
+            <td>Address :</td>
+            <td><textarea name="address"></textarea></td>
+        </tr>
+        <tr>
+            <td>Select district :</td>
+            <td>
+                <select name="district" id="subject">
+                    <option name="district" value="selected" selected="selected">Select</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Select Branch :</td>
+            <td>
+                <select name="branch" id="topic">
+                    <option name="branch" value="selected" selected="selected">Select</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="cars">Account Type:</label></td>
+            <td>
+                <select name="account" id="cars">
+                    <option value="savings">Savings</option>
+                    <option value="current">Current</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td> ATM Card : <input type="checkbox" value="True" name="atmcard"></td>
+            <td>Check Book : <input type="checkbox" value="True"name="checkbook"></td>
+        </tr>
+        <tr style="text-align:center;" >
+            <td colspan="2"><input type="submit" class="btn btn-primary" value="Submit"></td>
+        </tr>
+    </table>
+</form>
+
+    </div>
+<div class="col-md-2"></div>
+</div>
+</div>
+</body>
+</html>

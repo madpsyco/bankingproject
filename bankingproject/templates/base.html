@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+</head>
+<body>
+<style>
+  .navbar{
+  padding: 10px;
+  }
+  .custam-btn{
+    margin: 10px;
+  }
+  .right-section img{
+    height: 90%;
+    width: 90%;
+  }
+  .left-section{
+    margin: auto;
+    
+  }
+  .left-section h1,p{
+    margin: 20px;
+  }
+  .custam-btns{
+    border: 2px solid rgb(181, 23, 167);
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 30px;
+    margin:0px 20px;
+    padding: 10px;
+  }
+  .custam-btns:hover{
+    border: 2px solid rgb(92, 154, 204);
+    border-radius: 30px;
+
+  }
+
+  .body-right-section img{
+    height: 90%;
+    width: 90%;
+  }
+  .body-left-section{
+    margin: auto; 
+  }
+  .body-left-section h1,p{
+    margin: 20px;
+  }
+
+
+
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+  
+</style>
+  <div class="container">
+    <!-- ---------------- header section --------------------- -->
+    <div class="row col-md-12">
+      <div class="left col-md-12">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="#">BANKAPP</a>
+
+          <div class="collapse navbar-collapse text-center" id="navbarNav">
+            <ul class="navbar-nav ">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+
+
+
+            <a style="text-decoration:none;color:black;" class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Branches
+            </a>
+
+
+<!--{{ i.branch }}-->
+<!--{{ i.link }}-->
+
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+<!--                <li class="dropdown-item"><a href="#">Some action</a></li>-->
+<!--                <li class="dropdown-item"><a href="#">Some other action</a></li>-->
+<!--                <li class="dropdown-divider"></li>-->
+                {% for district in districts %}
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">{{ district.name }}</a>
+                  <ul class="dropdown-menu">
+                    {% for branch in district.branch_set.all %}
+                    <li class="dropdown-item"><a style="text-decoration:none;color:black;" href="#">{{ branch.name }}</a></li>
+                     {% endfor %}
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul>
+
+
+
+
+
+
+              </li>
+            </ul>
+           
+          </div>
+          <a href="/credentials/login/"class="btn btn-dark custam-btn float-end">Login</a>
+          <a href="/credentials/register/"class="btn btn-dark custam-btn float-end">Register</a>
+        </nav>
+      </div>
+      
+      <!-- <div class="right col-md-6 "></div> -->
+    </div>
+    <!-- ------------- header section end -------------------- -->
+
+    <!-- --------------- Banner section ---------------------- -->
+    <div class="row banner col-md-12">
+      <div class="col-md-6 left-section">
+        <h1>One Group Financiers</h1>
+        <p class="text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+<!--        <a href="#"class="btn  custam-btns">READ MORE</a>-->
+          <a href="/home_view"class="btn  custam-btns">Registration Form</a>
+      </div>
+      <div class="col-md-6 right-section">
+        <img class="float-end" src="{% static 'images/banner-img.png' %}" alt="">
+      </div>
+    </div>
+    
+    <!-- ------------ Banner section end--------------------- -->
+    <!-- ---------------- body-section-start----------------- -->
+    <div class="row body-section col-md-12">
+      <div class="col-md-5 body-right-section ">
+        <img class="float-end" src="{% static 'images/img-1.png' %}" alt="">
+      </div>
+      <div class="col-md-7 body-left-section ">
+        <h1>Our Financial Services</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book.</p>
+      </div>
+      
+    </div>
+    <!-- ---------------- body-section-end----------------- -->
+    <!-- ---------------- body-section-end----------------- -->
+
+
+  </div>
+
+
+<!-- ---------------- footer----------------- -->
+
+<style>
+.footer {
+<!--   position: fixed;-->
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: black;
+   text-align: center;
+}
+</style>
+
+<div class="footer">
+  <p>@copyright</p>
+</div>
+
+</body>
+</html>
+
